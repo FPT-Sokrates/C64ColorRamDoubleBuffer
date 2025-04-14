@@ -38,7 +38,7 @@ To facilitate porting to other assemblers, sophisticated acme features and binar
 
 ## License
 
-This project is licensed under the [MIT LICENSE](LICENSE.md).
+This project is licensed under the [MIT LICENSE](LICENSE).
 
 Notice: Before you use the program in productive use, please take all necessary precautions, e.g. testing and verifying the program with regard to your specific use. The program was tested solely for my own use cases, which might differ from yours.
 
