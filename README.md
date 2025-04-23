@@ -196,3 +196,22 @@ The pros and cons of the color ram double buffer compared to the standard text m
 |  + double number of freely definable pixels due to second charset | - slightly lower resolution (320x192 pixel compared to 320x200 pixel) |
 |  + all grafical content needs only half of the memory | - less fine adressable blocks for a char and its color ram color (8x16 instead of 8x8) |
 |  + great coolness factor! (invented advantage to balance the number of pros and cons :-) | - timing issues due to raster interrupts (especially sprites must be handled with care) |
+
+### First Appearance
+
+To determine the first use of the Color RAM Double Buffer, I asked for collaboration on various platforms:
+* [CSDb](https://csdb.dk/forums/?roomid=12&topicid=170937) The C-64 Scene Database
+* [Forum64](https://www.forum64.de/index.php?thread/155119-c64colorramdoublebuffer/) German C64 Community Portal
+
+Both platforms came to the same conclusion: "Balls Of The Scrolling Thunder" by Johan Forslöf (Doynax) is cited as the first program with a color RAM double buffer. A reference to the correctness of this assumption can be found here:
+https://csdb.dk/forums/?roomid=11&topicid=47495&showallposts=1
+
+In this discussion in 2007, Doynax talks about his game under construction: "The d800 copy is double buffered." The other participants reacted as if they weren't familiar with this idea yet. 
+
+Various dates are given for the release:
+* [Gtw](https://www.gamesthatwerent.com/gtw64/balls-of-the-scrolling-thunder/) "Games That Weren't" states 2006.
+* [CSDb](https://csdb.dk/release/?id=159795) CSDb has a preview from 2007.
+
+The game itself was unfortunately never completed.
+
+Whether this was actually the first use of this idea cannot be said with absolute certainty – today's knowledge is tomorrow's error. Please let me know if anyone has other information and can back it up with a program!
