@@ -209,7 +209,7 @@ https://csdb.dk/forums/?roomid=11&topicid=47495&showallposts=1
 In this discussion in 2007, Doynax talks about his game under construction: "The d800 copy is double buffered." The other participants reacted as if they weren't familiar with this idea yet. 
 
 Various dates are given for the release:
-* [Gtw](https://www.gamesthatwerent.com/gtw64/balls-of-the-scrolling-thunder/) "Games That Weren't" states 2006.
+* [GTW](https://www.gamesthatwerent.com/gtw64/balls-of-the-scrolling-thunder/) "Games That Weren't" states 2006.
 * [CSDb](https://csdb.dk/release/?id=159795) CSDb has a preview from 2007.
 
 The game itself was unfortunately never completed.
