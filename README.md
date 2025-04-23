@@ -203,7 +203,7 @@ To determine the first use of the Color RAM Double Buffer, I asked for collabora
 * [CSDb](https://csdb.dk/forums/?roomid=12&topicid=170937) The C-64 Scene Database
 * [Forum64](https://www.forum64.de/index.php?thread/155119-c64colorramdoublebuffer/) German C64 Community Portal
 
-Both platforms came to the same conclusion: "Balls Of The Scrolling Thunder" by Johan Forslöf (Doynax) is cited as the first program with a color RAM double buffer. A reference to the correctness of this assumption can be found here:
+Both platforms came to the same conclusion: "Balls Of The Scrolling Thunder" by Johan Forslöf (Doynax) is cited as the first program with a color ram double buffer. A reference to the correctness of this assumption can be found here:
 https://csdb.dk/forums/?roomid=11&topicid=47495&showallposts=1
 
 In this discussion in 2007, Doynax talks about his game under construction: "The d800 copy is double buffered." The other participants reacted as if they weren't familiar with this idea yet. 
