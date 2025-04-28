@@ -10,7 +10,7 @@ The main purposes of this implementation:
 * understand the double buffer idea better by looking at an example
 * inspiration and good starting point for your own use-cases
 
-Known implementation restrictions: sprites can disturb the raster timing depending on their position and their sprite number. If you need multiple sprites with random positions for your use-case then the raster line timing must be adapted.
+Known implementation restrictions: sprites can disturb the raster timing depending on their position and their sprite number.
 
 ## Quickstart Guide
 
@@ -196,6 +196,17 @@ The pros and cons of the color ram double buffer compared to the standard text m
 |  + double number of freely definable pixels due to second charset | - slightly lower resolution (320x192 pixel compared to 320x200 pixel) |
 |  + all grafical content needs only half of the memory | - less fine adressable blocks for a char and its color ram color (8x16 instead of 8x8) |
 |  + great coolness factor! (invented advantage to balance the number of pros and cons :-) | - timing issues due to raster interrupts (especially sprites must be handled with care) |
+
+### Optimizations
+
+Whether and which optimizations are needed depends on the application.
+
+As mentioned above, sprites can disturb the raster timing depending on their position and their sprite number. If you need multiple sprites with random positions for your use-case then the raster line timing must be adapted and additional multiplexers can be added.
+
+The raster interrupts generate a constant workload for each frame. To reduce this workload the stable raster interrupts can implemented faster, e.g. by using the Ninja-method:
+* [Codebase 64](https://codebase64.org/doku.php?id=base:nmis_and_distributed_jitter-correction_routines) The Ninja-Method
+* [The dreams](https://www.the-dreams.de/articles/2x2-fli.txt) How to get a fast 2x2-FLI routine
+When using this method you have to take care of the fragmented memory and the VIC-II and Complex Interface Adapter (CIA) type dependencies.
 
 ### First Appearance
 
