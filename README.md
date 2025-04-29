@@ -206,6 +206,7 @@ As mentioned above, sprites can disturb the raster timing depending on their pos
 The raster interrupts generate a constant workload for each frame. To reduce this workload the stable raster interrupts can implemented faster, e.g. by using the Ninja-method:
 * [Codebase 64](https://codebase64.org/doku.php?id=base:nmis_and_distributed_jitter-correction_routines) The Ninja-Method
 * [The Dreams](https://www.the-dreams.de/articles/2x2-fli.txt) How to get a fast 2x2-FLI routine
+
 When using this method you have to take care of the fragmented memory and the VIC-II and Complex Interface Adapter (CIA) type dependencies.
 
 ### First Appearance
