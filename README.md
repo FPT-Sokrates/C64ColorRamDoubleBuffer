@@ -2,7 +2,7 @@
 
 This project is an example implementation of a double buffer for the Commodore 64 color ram, it uses character mode.
 
-The first 12 even lines of the screen memory and the color ram are buffer 0, the first 12 odd lines are buffer 1. Character size ist 8x16, the upper 8x8 part of a character number x is defined by charset 0, the lower 8x8 part is defined by the same character number x in charset 1. So the character screen consist of 8x16 character size times 12 lines (=24 lines in standard mode) and the number of columns remains the standard 40 columns.
+The first 12 even lines of the screen memory and the color ram are buffer 0, the first 12 odd lines are buffer 1. Character size is 8x16, the upper 8x8 part of a character number x is defined by charset 0, the lower 8x8 part is defined by the same character number x in charset 1. So the character screen consist of 8x16 character size times 12 lines (=24 lines in standard mode) and the number of columns remains the standard 40 columns.
 
 The example works for all VIC-II types (pal, ntsc, drean, etc.).
 
@@ -53,7 +53,7 @@ The Commodore 64 video interface controller II (VIC-II) supports double bufferin
 To avoid artifacts when using the color ram different techniques are used:
 1. Standard ram is used as double buffer. This ram is used for color ram updates. Since the VIC-II can not switch to this buffer, the complete buffer (40x25=1000 bytes) must be copied at a certain rasterline position to avoid flickering. Copy 1000 bytes consumes a lot of processor cycles, waiting for the certain rasterline adds more cycles depending on when the update is done.
 2. Fill the color ram only once. This results in less colors (e.g. for games using scrolling), since the color ram color definition is fixed.
-3. Delta updates. Update only smaller parts of the color ram. The number of modifications must be small and fast enought to avoid flickering. This limits the number of use-cases and depending on the implementation additional ram is needed.
+3. Delta updates. Update only smaller parts of the color ram. The number of modifications must be small and fast enough to avoid flickering. This limits the number of use-cases and depending on the implementation additional ram is needed.
 
 Thanks to undocumented tricks and side effects of the VIC-II there is another possibility to address this problem - split the color ram in even and odd lines to implement a double buffer.
 
@@ -66,7 +66,7 @@ The basic idea is to split up the screen memory and the color ram: the first 12 
 * the size of a char is 8x16 (instead of 8x8 for standard chars).
 * two charsets are needed for the definition of the 8x16 chars (instead of one charset for standard chars). The upper 8x8 part of a character number x is defined by charset 0, the lower 8x8 part is defined by the same character number x in charset 1.
 * a significant amount of rasterlines in each frame is needed for the implementation.
-* raster interrupts must be precice an thus can be disturbed by other interrupts or sprites. Therefore, sprites must be handled with care.
+* raster interrupts must be precise and thus can be disturbed by other interrupts or sprites. Therefore, sprites must be handled with care.
 
 Applied techniques:
 * stable und unstable raster interrupts (use fast unstable interrupts when possible and stable interrupts when needed)
@@ -124,7 +124,7 @@ The comparison is done between the color ram double buffer for text mode and the
 | color ram color size | 8x16 pixel | 8x8 pixel |
 | screen size | 320x192 pixel | 320x200 pixel |
 
-Color ram double buffer has less fine adressable blocks for chars and their corresponding color ram color (8x16 instead of 8x8). Also it has a slightly lower resolution.
+Color ram double buffer has less fine addressable blocks for chars and their corresponding color ram color (8x16 instead of 8x8). Also it has a slightly lower resolution.
 
 #### Pixel Definition
 
@@ -132,7 +132,7 @@ Color ram double buffer has less fine adressable blocks for chars and their corr
 | ------ | ------ | ------ |
 | number of freely definable pixels on screen| 8x16x256= 32768 pixel | 8x8x256=16384 pixel |
 
-Thanks to the second character set, the number of freely definable pixels is twice as large for the color ram double buffer! This allows a much larger grafical variaty. 
+Thanks to the second character set, the number of freely definable pixels is twice as large for the color ram double buffer! This allows a much larger graphical variety. 
 
 #### Memory Consumption
 
@@ -171,7 +171,7 @@ On one hand less data has to be written for the color ram double buffer. On the 
 
 The numbers for the standard text mode are straight forward: the total number of frames is the sum of the number of frames for calculation and the number of frames to draw the results.
 
-The numbers for the color ram double buffer are more complex, due to the constant raster interrupt workload for each frame. For example the calculation takes 1 frame and 1 frame to draw the results on the screen. This results in 2 frames. But in each of these frames 25% is needed for raster interrupts and only 75% of each frame can be used for calculation and drawing. So for calculation and drawing 2/0.75=2.67 frames are needed. This means that a third frame has to be started and for these three totals frames needed aditionally 3x0.25=0.75 frames are used for raster interrupts. For this example the total number of frames sums up to 2 + 0.75 = 2.75 frames.
+The numbers for the color ram double buffer are more complex, due to the constant raster interrupt workload for each frame. For example the calculation takes 1 frame and 1 frame to draw the results on the screen. This results in 2 frames. But in each of these frames 25% is needed for raster interrupts and only 75% of each frame can be used for calculation and drawing. So for calculation and drawing 2/0.75=2.67 frames are needed. This means that a third frame has to be started and for these three totals frames needed additionally 3x0.25=0.75 frames are used for raster interrupts. For this example the total number of frames sums up to 2 + 0.75 = 2.75 frames.
 
 | Calculation time | Color Ram Double Buffer | Standard Text Mode |
 | ------ | ------ | ------ |
@@ -194,7 +194,7 @@ The pros and cons of the color ram double buffer compared to the standard text m
 | ------ | ------ |
 |  + faster for short use-case calculation times | - slower for long use-case calculation times |
 |  + double number of freely definable pixels due to second charset | - slightly lower resolution (320x192 pixel compared to 320x200 pixel) |
-|  + all grafical content needs only half of the memory | - less fine adressable blocks for a char and its color ram color (8x16 instead of 8x8) |
+|  + all graphical content needs only half of the memory | - less fine addressable blocks for a char and its color ram color (8x16 instead of 8x8) |
 |  + great coolness factor! (invented advantage to balance the number of pros and cons :-) | - timing issues due to raster interrupts (especially sprites must be handled with care) |
 
 ### Optimizations
@@ -209,9 +209,11 @@ The raster interrupts generate a constant workload for each frame. To reduce thi
 
 When using this method you have to take care of the fragmented memory and the VIC-II and Complex Interface Adapter (CIA) type dependencies.
 
+Repeating char lines and switching the character set can also be applied multiple times in succession. This further increases the number of freely definable pixels and further reduces the memory required for graphical content and the data to be updated per buffer, without increasing the overhead caused by raster interrupts. This improves the speed advantage of the color ram double buffer. The disadvantage is that the same color ram value applies to correspondingly more characters in a column, and additional memory is required for the additional character sets.
+
 ### First Appearance
 
-To determine the first use of the Color RAM Double Buffer, I asked for collaboration on various platforms:
+To determine the first use of the color ram double buffer, I asked for collaboration on various platforms:
 * [CSDb](https://csdb.dk/forums/?roomid=12&topicid=170937) The C-64 Scene Database
 * [Forum64](https://www.forum64.de/index.php?thread/155119-c64colorramdoublebuffer/) German C64 Community Portal
 
